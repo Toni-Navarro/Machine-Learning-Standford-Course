@@ -20,14 +20,11 @@ grad = zeros(size(theta));
 %
 
 
-
-
-
-
-
-
-
-
+h = X * theta;
+squaredErrors = (h - y) .^ 2;
+thetaExcludingZero = [ [ 0 ]; theta([2:length(theta)])];
+J = (1 / (2 * m)) * sum(squaredErrors) + (lambda / (2 * m)) * sum(thetaExcludingZero .^ 2);
+grad = (1 / m) * sum((h - y) .* X) + (lambda / m) * thetaExcludingZero';
 
 
 % =========================================================================
